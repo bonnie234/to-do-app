@@ -31,6 +31,11 @@ function onReady() {
     newToDoText.value = '';
 
   });
+
+Delete
+addToDoForm.addEventListener('submit');
+
+   });
 }
 
 
