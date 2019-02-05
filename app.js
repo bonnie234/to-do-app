@@ -1,5 +1,6 @@
 
 function onReady() {
+  let id = 0;
   const addToDoForm = document.getElementById('addToDoForm');
   const newToDoText = document.getElementById('newToDoText');
   const toDoList = document.getElementById('toDoList');
@@ -41,6 +42,10 @@ function onReady() {
 minusBtn.addEventListener('click', function() {
    newLi.parentNode.removeChild(newLi);
 })
+
+var words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+
+const result = words.filter(word => word.length > 6);
 
 console.log(title);
    });
