@@ -1,11 +1,9 @@
-
 function onReady() {
-    let id = 0;
-    const toDos = [];
+     let id = 0;
+      let toDos = [];
+      const addToDoForm = document.getElementById('addToDoForm');
 
-    const addToDoForm = document.getElementById('addToDoForm');
-
-  function createNewToDo() {
+    function createNewToDo() {
     const newToDoText = document.getElementById('newToDoText');
     if (!newToDoText.value) { return; }
 
@@ -13,42 +11,44 @@ function onReady() {
     title: newToDoText.value,
     complete: false,
     id: ++id
-  });
+
+});
+
+    id++;
     newToDoText.value = '';
 
     renderTheUI();
-  }
 }
 
-  function renderTheUI() {
-    const toDoList = document.getElementById('toDoList');
+function renderTheUI() {
+  const toDoList = document.getElementById('toDoList');
 
-    const deleteBtn = document.createElement('button')
-         deleteBtn.innerHTML = '<span>Delete</span>';
+  toDoList.textContent = '';
 
+  toDos.forEach(function(toDo) {
+    const newLi = document.createElement('li');
+    const checkbox = document.createElement('input');
+    checkbox.type = "checkbox";
 
-    newLi.innerHTML = toDo.title;
-    newLi.appendChild(deleteBtn);
-  });
-    toDoList.textContent = '';
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = "Delete!";
 
-    toDos.forEach(function(toDo) {
-      const newLi = document.createElement('li');
-      const checkbox = document.createElement('input');
-      checkbox.type = "checkbox";
+    deleteBtn.addEventListener('click', event => {
+      toDos = toDos.filter(function(item){
+        return item.id !== toDo.id;
+      })
+      renderTheUI();
+    });
 
       newLi.textContent = toDo.title;
 
       toDoList.appendChild(newLi);
       newLi.appendChild(checkbox);
+      newLi.appendChild(deleteBtn);
+  })
+}
 
-/ var words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
-const result = words.filter(word => word.length > 6);
-console.log(result); //
-    });
- }
-
-  addToDoForm.addEventListener('submit', event => {
+addToDoForm.addEventListener('submit', event => {
   event.preventDefault();
   createNewToDo();
 });
